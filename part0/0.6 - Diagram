@@ -1,1 +1,12 @@
+title Exercise: "0.6: New note"
 
+note over browser:
+sends the JSON-data (content and date) to the server
+end note
+browser->server: HTTP POST https://studies.cs.helsinki.fi/exampleapp/new_note_spa
+
+server->browser: responds with status code 201
+
+note over browser:
+browser rerenders new elements on the page
+end note
