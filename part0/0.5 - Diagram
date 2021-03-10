@@ -1,1 +1,11 @@
+title Exercise: "0.5: Single page app"
 
+browser->server: HTTP GET https://studies.cs.helsinki.fi/exampleapp/spa
+
+server-->browser: Returns HTML
+server-->browser: Returns main.css
+server-->browser: Returns spa.js
+
+browser->server: HTTP GET https://studies.cs.helsinki.fi/exampleapp/data.json
+
+server-->browser: Returns data.json
