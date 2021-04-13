@@ -17,6 +17,14 @@ const bad = props.feedback[2];
     return (good * 100) / total()
   }
 
+  if(total() === 0) {
+    return (
+      <div>
+        <p>No feedback submited yet</p>
+      </div>
+
+    )
+  }
   return (
   <>
   <div>
