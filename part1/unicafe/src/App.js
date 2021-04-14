@@ -8,8 +8,12 @@ const Button = (props) => (
 
 const Statistic = (props) => {
   return(
-  <p>{props.text}: {props.value}</p>
-)
+   <tbody> 
+     <tr> 
+      <td>{props.text}:</td><td>{props.value}</td>
+    </tr>
+    </tbody>
+        )
 }
 
 const App = () => {
@@ -23,12 +27,14 @@ const App = () => {
     if(tot > 0){
     return (
       <>
+      <table>
         <Statistic text="Good" value={good}></Statistic>
         <Statistic text="Neutral" value={neutral}></Statistic>
         <Statistic text="Bad" value={bad}></Statistic>
-        <Statistic text="Total Feedback" value = {total}></Statistic>
-        <Statistic text="Average Feedback" value =  {(good-bad) / total}></Statistic>
+        <Statistic text="Total" value = {total}></Statistic>
+        <Statistic text="Average" value =  {(good-bad) / total}></Statistic>
         <Statistic text="Positive Ratio" value = {(good * 100) / total}></Statistic>
+        </table>
     </>
     )}
     else
@@ -47,10 +53,8 @@ const App = () => {
       <div>
       <h3>Feedback Statistics</h3>    
       {stats(total)}            
-        </div>
-      
+        </div>    
     </>
-
   )
 }
 
