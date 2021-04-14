@@ -23,7 +23,7 @@ const App = () => {
   const [bad, setBad] = useState(0)
   const total = good + bad + neutral;
 
-  const stats = (tot) => {
+  function showStats (tot) {
     if(tot > 0){
     return (
       <>
@@ -52,7 +52,7 @@ const App = () => {
 
       <div>
       <h3>Feedback Statistics</h3>    
-      {stats(total)}            
+      {showStats(total)}            
         </div>    
     </>
   )
