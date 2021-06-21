@@ -1,10 +1,54 @@
+import React from 'react';
+import ReactDOM from 'react-dom';
+
+const Course = ({ course }) => {
+
+  const Header = ({ course }) => {
+    return (
+      <h1>{course.name}</h1>
+    )
+  }
+
+  const Part = (props) => {
+    return (
+      <p>
+        {props.part.name} {props.part.exercises}
+      </p>
+    )
+  }
+
+  const Content = ({ course }) => {
+    return (
+      <div>
+        <Part part={course.parts[0]} />
+        <Part part={course.parts[1]} />
+        <Part part={course.parts[2]} />
+      </div>
+    )
+  }
+
+  const Total = ({ course }) => {
+    const sum = course.parts[0].exercises + course.parts[1].exercises + course.parts[2].exercises
+    return (
+      <b><p>Number of exercises {sum}</p></b>
+    )
+  }
+
+  return (<div>
+    <Header course={course} />
+    <Content course={course} />
+    <Total course={course} />
+  </div>)
+}
+
 const App = () => {
+
   const course = {
     id: 1,
     name: 'Half Stack application development',
     parts: [
       {
-        name: 'Fundamentals of React',
+        name: 'Fundmentals of React',
         exercises: 10,
         id: 1
       },
@@ -23,3 +67,7 @@ const App = () => {
 
   return <Course course={course} />
 }
+
+ReactDOM.render(<App />, document.getElementById('root'))
+
+export default App;
