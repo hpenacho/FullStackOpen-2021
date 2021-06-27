@@ -21,12 +21,16 @@ const App = () => {
 
   const addName = (event) => {
     event.preventDefault()
-    const personObject = {
-      name: newName,
-      id: persons.length + 1
+    if (persons.includes(persons.find(personName => personName.name === newName))) {
+      alert(`${newName} is already in the phonebook`)
     }
-
-    setPersons(persons.concat(personObject));
+    else {
+      const personObject = {
+        name: newName,
+        id: persons.length + 1
+      }
+      setPersons(persons.concat(personObject));
+    }
     setNewName('');
   }
 
