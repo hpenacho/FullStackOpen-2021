@@ -6,7 +6,7 @@ const Persons = ({ persons, filter }) => {
         <ul>
             {persons.filter(p => p.name.includes(filter)).map(person =>
                 <div>
-                    <Person key={person.name} person={person.name} number={person.number} />
+                    <Person key={person.id} person={person.name} number={person.number} />
                 </div>
             )}
         </ul>

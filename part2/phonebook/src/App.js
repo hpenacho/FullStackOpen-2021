@@ -11,7 +11,6 @@ const App = () => {
   const [persons, setPersons] = useState([])
   const [filter, setFilter] = useState('')
 
-
   const hook = () => {
     console.log('effect')
     axios
