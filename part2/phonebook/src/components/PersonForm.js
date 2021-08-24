@@ -1,5 +1,5 @@
 import React, { useState } from "react"
-import axios from 'axios';
+import personService from '../services/Persons'
 
 const PersonForm = ({ persons, setPersons }) => {
 
@@ -17,11 +17,11 @@ const PersonForm = ({ persons, setPersons }) => {
                 number: newNumber,
                 id: persons.length + 1
             }
-            setPersons(persons.concat(personObject));
-            axios
-                .post('http://localhost:3001/persons', personObject)
-                .then(response => {
-                    console.log(response)
+            personService
+                .create(personObject)
+                .then(createdPerson => {
+                    setPersons(persons.concat(createdPerson));
+                    console.log(createdPerson);
                 })
         }
         setNewName('');
