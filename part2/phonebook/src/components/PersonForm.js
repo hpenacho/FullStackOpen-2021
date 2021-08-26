@@ -8,8 +8,20 @@ const PersonForm = ({ persons, setPersons }) => {
 
     const handleSubmit = (event) => {
         event.preventDefault()
-        if (persons.includes(persons.find(personName => personName.name === newName))) {
-            alert(`${newName} is already in the phonebook`)
+
+        let submittedPerson = persons.find(person => person.name === newName);
+        if (persons.includes(submittedPerson)) {
+            let confirmation = window.confirm(`${submittedPerson.name} is already on the list, replace the old number with this new one?`);
+            if (confirmation) {
+                const modifiedPersonObj = { ...submittedPerson, number: newNumber }
+                personService
+                    .update(modifiedPersonObj.id, modifiedPersonObj)
+                    .then(returnedPerson => {
+                        setPersons(persons.map(person => person.id !== modifiedPersonObj.id ? person : returnedPerson))
+                        console.log(returnedPerson)
+                    })
+
+            }
         }
         else {
             const personObject = {
