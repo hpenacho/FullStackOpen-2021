@@ -1,7 +1,7 @@
 import React, { useState } from "react"
 import personService from '../services/Persons'
 
-const PersonForm = ({ persons, setPersons }) => {
+const PersonForm = ({ persons, setPersons, setNotification, setNotificationType }) => {
 
     const [newName, setNewName] = useState('')
     const [newNumber, setNewNumber] = useState('')
@@ -18,7 +18,20 @@ const PersonForm = ({ persons, setPersons }) => {
                     .update(modifiedPersonObj.id, modifiedPersonObj)
                     .then(returnedPerson => {
                         setPersons(persons.map(person => person.id !== modifiedPersonObj.id ? person : returnedPerson))
-                        console.log(returnedPerson)
+                        setNotification(
+                            `${modifiedPersonObj.name}'s number was changed to ${newNumber}`
+                        )
+                        setNotificationType('successfulOperation')
+                    })
+                    .catch(error => {
+                        setNotification(
+                            `${modifiedPersonObj.name}'s information has been removed from server`
+                        )
+                        setTimeout(() => {
+                            setNotification(null)
+                        }, 5000)
+                        setNotificationType('error')
+                        console.log(error)
                     })
 
             }
@@ -33,7 +46,13 @@ const PersonForm = ({ persons, setPersons }) => {
                 .create(personObject)
                 .then(createdPerson => {
                     setPersons(persons.concat(createdPerson));
-                    console.log(createdPerson);
+                    setNotification(
+                        `${newName} was added to the phonebook sucessfully!`
+                    )
+                    setTimeout(() => {
+                        setNotification(null)
+                    }, 5000)
+                    setNotificationType('successfulOperation')
                 })
         }
         setNewName('');
